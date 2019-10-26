@@ -50,6 +50,18 @@ class Game {
     heart.setAttribute('src', 'images/lostHeart.png');
     this.missed += 1;
   }
+
+  gameOver() {
+    document.getElementById('overlay').style.display = 'block';
+    const gameOverMessage = document.getElementById('game-over-message');
+    const resetButton = document.getElementById('btn__reset');
+    if (this.checkForWin()) {
+      gameOverMessage.innerHTML = 'You won! Good job!';
+    } else {
+      gameOverMessage.innerHTML = 'Sorry, better luck next time!';
+    }
+    resetButton.innerHTML = 'Play Again';
+  }
 }
 
 // const game = new Game();
