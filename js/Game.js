@@ -28,6 +28,19 @@ class Game {
   }
 
   handleInteraction() {}
+
+  checkForWin() {
+    const charLIs = document.getElementsByClassName('letter');
+    // console.log("character LIs: ", charLIs);
+    let gameIsWon = true;
+    for (let i = 0; i < charLIs.length; i++) {
+      const charLI = charLIs[i];
+      if (charLI.classList.contains('hide')) {
+        gameIsWon = false;
+      }
+    }
+    return gameIsWon;
+  }
 }
 
 // const game = new Game();
