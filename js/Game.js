@@ -41,6 +41,15 @@ class Game {
     }
     return gameIsWon;
   }
+
+  removeLife() {
+    const hearts = document.getElementsByTagName('img');
+    console.log('hearts: ', hearts);
+    const heart = hearts[this.missed];
+    console.log('heart: ', heart);
+    heart.setAttribute('src', 'images/lostHeart.png');
+    this.missed += 1;
+  }
 }
 
 // const game = new Game();
