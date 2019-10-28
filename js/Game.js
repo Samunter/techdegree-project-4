@@ -49,6 +49,10 @@ class Game {
     console.log('heart: ', heart);
     heart.setAttribute('src', 'images/lostHeart.png');
     this.missed += 1;
+    if (this.missed === 5) {
+      this.checkForWin();
+      this.gameOver();
+    }
   }
 
   gameOver() {
