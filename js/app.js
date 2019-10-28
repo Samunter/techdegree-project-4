@@ -9,3 +9,11 @@ startButton.addEventListener('click', function() {
   game = new Game();
   game.startGame();
 });
+
+const keyboard = document.getElementById('qwerty');
+
+keyboard.addEventListener('click', function(e) {
+  if (e.target.classList.contains('key')) {
+    game.handleInteraction(e.target);
+  }
+});

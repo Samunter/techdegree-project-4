@@ -37,7 +37,7 @@ class Phrase {
     // console.log("character LIs: ", charLIs);
     for (let i = 0; i < charLIs.length; i++) {
       const charLI = charLIs[i];
-      console.log('character LI inner html:', charLI.innerHTML);
+      // console.log('character LI inner html:', charLI.innerHTML);
       if (letter === charLI.innerHTML) {
         charLI.setAttribute('class', `show letter ${letter}`);
       }

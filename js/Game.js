@@ -27,8 +27,6 @@ class Game {
     this.activePhrase.addPhraseToDisplay();
   }
 
-  handleInteraction() {}
-
   checkForWin() {
     const charLIs = document.getElementsByClassName('letter');
     // console.log("character LIs: ", charLIs);
@@ -59,31 +57,32 @@ class Game {
     document.getElementById('overlay').style.display = 'block';
     const gameOverMessage = document.getElementById('game-over-message');
     const resetButton = document.getElementById('btn__reset');
+    const overlay = document.getElementById('overlay');
     if (this.checkForWin()) {
       gameOverMessage.innerHTML = 'You won! Good job!';
+      overlay.setAttribute('class', 'win');
     } else {
       gameOverMessage.innerHTML = 'Sorry, better luck next time!';
+      overlay.setAttribute('class', 'lose');
     }
+    console.log(overlay);
     resetButton.innerHTML = 'Play Again';
   }
+
+  handleInteraction(button) {
+    const letter = button.innerHTML;
+    console.log('letter: ', letter);
+    button.disabled = true;
+    if (!this.activePhrase.checkLetter(letter)) {
+      button.classList.add('wrong');
+      this.removeLife();
+    } else if (this.activePhrase.checkLetter(letter)) {
+      button.classList.add('chosen');
+      this.activePhrase.showMatchedLetter(letter);
+      this.checkForWin();
+      if (this.checkForWin()) {
+        this.gameOver();
+      }
+    }
+  }
 }
-
-// const game = new Game();
-// game.phrases.forEach((phrase, index) => {
-//   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
-// });
-
-// const logPhrase = phrase => {
-//   console.log(`Phrase - phrase: `, phrase.phrase);
-// };
-
-// const game = new Game();
-
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-// logPhrase(game.getRandomPhrase());
-
-// const game = new Game();
-// game.getRandomPhrase().addPhraseToDisplay();
