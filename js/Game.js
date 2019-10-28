@@ -13,6 +13,7 @@ class Game {
       { phrase: 'A bird in the hand is worth two in the bush' }
     ];
     this.activePhrase = null;
+    this.lettersTyped = [];
   }
 
   getRandomPhrase() {
@@ -73,16 +74,16 @@ class Game {
   }
 
   gameOver() {
-    document.getElementById('overlay').style.display = 'block';
+    document.getElementById('overlay').style.display = '';
     const gameOverMessage = document.getElementById('game-over-message');
     const resetButton = document.getElementById('btn__reset');
     const overlay = document.getElementById('overlay');
     if (this.checkForWin()) {
       gameOverMessage.innerHTML = 'You won! Good job!';
-      overlay.setAttribute('class', 'win');
+      overlay.setAttribute('class', 'title win');
     } else {
       gameOverMessage.innerHTML = 'Sorry, better luck next time!';
-      overlay.setAttribute('class', 'lose');
+      overlay.setAttribute('class', 'title lose');
     }
     console.log(overlay);
     resetButton.innerHTML = 'Play Again';
