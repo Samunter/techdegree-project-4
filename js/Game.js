@@ -22,6 +22,25 @@ class Game {
   }
 
   startGame() {
+    const phraseParent = document.getElementById('phrase');
+    const keys = document.getElementsByClassName('key');
+    const hearts = document.getElementsByTagName('img');
+
+    while (phraseParent.firstChild) {
+      phraseParent.removeChild(phraseParent.firstChild);
+    }
+
+    for (let i = 0; i < keys.length; i++) {
+      const key = keys[i];
+      key.disabled = false;
+      key.className = 'key';
+    }
+
+    for (let i = 0; i < hearts.length; i++) {
+      const heart = hearts[i];
+      heart.setAttribute('src', 'images/liveHeart.png');
+    }
+
     document.getElementById('overlay').style.display = 'none';
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
