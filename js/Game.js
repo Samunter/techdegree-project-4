@@ -16,12 +16,20 @@ class Game {
     this.lettersTyped = [];
   }
 
+  /**
+   * Selects random phrase from phrases property
+   * @return {Object} Phrase object chosen to be used
+   */
   getRandomPhrase() {
     let i = Math.floor(Math.random() * this.phrases.length);
-    // console.log('phrase index: ', i);
     return new Phrase(this.phrases[i].phrase);
   }
 
+  /**
+   * Begins game by selecting a random phrase and displaying it to user
+   * Resets game by removing phrase from display, enabling all onscreen
+   * keys, and restoring hearts.
+   */
   startGame() {
     const phraseParent = document.getElementById('phrase');
     const keys = document.getElementsByClassName('key');
@@ -47,9 +55,12 @@ class Game {
     this.activePhrase.addPhraseToDisplay();
   }
 
+  /**
+   * Checks for winning move
+   * @return {boolean} True if game has been won, false if game wasn't won
+   */
   checkForWin() {
     const charLIs = document.getElementsByClassName('letter');
-    // console.log("character LIs: ", charLIs);
     let gameIsWon = true;
     for (let i = 0; i < charLIs.length; i++) {
       const charLI = charLIs[i];
@@ -60,11 +71,14 @@ class Game {
     return gameIsWon;
   }
 
+  /**
+   * Increases the value of the missed property
+   * Removes a life from the scoreboard
+   * Checks if player has remaining lives and ends game if player is out
+   */
   removeLife() {
     const hearts = document.getElementsByTagName('img');
-    console.log('hearts: ', hearts);
     const heart = hearts[this.missed];
-    console.log('heart: ', heart);
     heart.setAttribute('src', 'images/lostHeart.png');
     this.missed += 1;
     if (this.missed === 5) {
@@ -73,6 +87,10 @@ class Game {
     }
   }
 
+  /**
+   * Displays game over message
+   * Consults checkForWin() method for whether or not the user won the game
+   */
   gameOver() {
     document.getElementById('overlay').style.display = '';
     const gameOverMessage = document.getElementById('game-over-message');
@@ -85,13 +103,15 @@ class Game {
       gameOverMessage.innerHTML = 'Sorry, better luck next time!';
       overlay.setAttribute('class', 'title lose');
     }
-    console.log(overlay);
     resetButton.innerHTML = 'Play Again';
   }
 
+  /**
+   * Handles onscreen keyboard button clicks and keypress
+   * @param (HTMLButtonElement) button - The clicked button element
+   */
   handleInteraction(button) {
     const letter = button.innerHTML;
-    console.log('letter: ', letter);
     button.disabled = true;
     if (!this.activePhrase.checkLetter(letter)) {
       button.classList.add('wrong');
