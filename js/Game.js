@@ -13,7 +13,7 @@ class Game {
       { phrase: 'A bird in the hand is worth two in the bush' }
     ];
     this.activePhrase = null;
-    this.lettersTyped = [];
+    this.lettersGuessed = [];
   }
 
   /**

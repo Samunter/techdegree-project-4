@@ -21,6 +21,7 @@ const keyboard = document.getElementById('qwerty');
 keyboard.addEventListener('click', function(e) {
   if (e.target.classList.contains('key')) {
     game.handleInteraction(e.target);
+    game.lettersGuessed.push(e.target.innerHTML);
   }
 });
 
@@ -34,10 +35,10 @@ document.addEventListener('keyup', function(e) {
     const buttons = [...document.getElementsByClassName('key')];
     const button = buttons.filter(button => button.innerHTML === letter)[0];
 
-    if (!game.lettersTyped.includes(letter)) {
+    if (!game.lettersGuessed.includes(letter)) {
       game.handleInteraction(button);
     }
 
-    game.lettersTyped.push(letter);
+    game.lettersGuessed.push(letter);
   }
 });
